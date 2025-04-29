@@ -24,11 +24,11 @@ jobs:
       
     - name: Install dependencies
       run: bun install
-
+    
     - name: Create .env file
       run: |
-        echo "PUBLIC_POCKETBASE=${{ secrets.PUBLIC_POCKETBASE }}" >> .env
-        echo "PB_ADMIN_USERNAME=${{ secrets.PB_ADMIN_USERNAME }}" >> .env
+        echo "API_URL=${{ secrets.API_URL }}" >> .env
+        echo "PB_ADMIN_EMAIL=${{ secrets.PB_ADMIN_EMAIL }}" >> .env
         echo "PB_ADMIN_PASSWORD=${{ secrets.PB_ADMIN_PASSWORD }}" >> .env
 
     - name: Build app
