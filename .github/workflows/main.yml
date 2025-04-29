@@ -11,18 +11,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-    - name: Cache Node.js version
-      uses: actions/setup-node@v3
-      with:
-        node-version: '20'
-        cache: 'npm'
-
+      
     - name: Install dependencies
-      run: npm install
+      run: bun install
 
     - name: Build app
-      run: npm run build
+      run: bun run build
 
     - name: Run NestJS server
       run: |
