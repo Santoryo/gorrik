@@ -46,14 +46,30 @@ export class StreamerController {
             return {message: `No characters found for streamer with ID: ${twitchId}`};
         }
 
+        const cleanedCharacter = {
+            name: characters[0].name, // Example: Keep the 'name' key
+            race: characters[0].race,
+            profession: characters[0].profession, // Example: Keep the 'profession' key
+            level: characters[0].level, // Example: Keep the 'level' key
+            age: characters[0].age, // Example: Keep the 'age' key
+            last_modified: characters[0].last_modified, // Example: Keep the 'last_modified' key
+            created: characters[0].created, // Example: Keep the 'created' key
+            deaths: characters[0].deaths, // Example: Keep the 'deaths' key
+            active_build_tab: characters[0].active_build_tab, // Example: Keep the 'active_build_tab' key
+            build_tabs: characters[0].build_tabs, // Example: Keep the 'build_tabs' key
+            active_equipment_tab: characters[0].active_equipment_tab, // Example: Keep the 'active_equipment_tab' key
+            equipment_tabs: characters[0].equipment_tabs, // Example: Keep the 'equipment_tabs' key
+        };
+
+
         const a = await this.pbService.getInstance().collection<StreamerData>(DB_COLLECTIONS.USERS).update(streamerData.id, {
-            character: characters[0],
+            character: cleanedCharacter
         });
     
         console.log(`Updated character for streamer with ID: ${twitchId}`);
-        await this.cacheManager.set(`streamer_${twitchId}`, characters[0], 300000);
+        await this.cacheManager.set(`streamer_${twitchId}`, cleanedCharacter, 300000);
 
-        return characters[0];
+        return cleanedCharacter;
     }
 
 }

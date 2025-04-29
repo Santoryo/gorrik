@@ -3,14 +3,6 @@ import { ApiLanguage, GW2Api } from 'guildwars2-ts';
 
 @Injectable()
 export class Gw2dataService {
-  createApiInstance(apiKey: string): GW2Api {
-    return new GW2Api({
-      token: apiKey,
-      language: ApiLanguage.English,
-      rateLimitRetry: true,
-    });
-  }
-
   async getCharacters(apiKey: string): Promise<any> {
     const gw2Api = await fetch(
       `https://api.guildwars2.com/v2/characters?ids=all&access_token=${apiKey}&v=2019-12-19T00:00:00.000Z`,
