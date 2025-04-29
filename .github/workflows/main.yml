@@ -7,21 +7,33 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-
+    environment: db
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Install Node.js
+    - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '18'
+        node-version: '20'
 
+    - name: Install Bun
+      run: |
+        curl -fsSL https://bun.sh/install | bash
+        echo "$HOME/.bun/bin" >> $GITHUB_PATH
+      
     - name: Install dependencies
-      run: npm install
+      run: bun install
+    
+    - name: Create .env file
+      run: |
+        echo "API_URL=${{ secrets.API_URL }}" >> .env
+        echo "PB_ADMIN_EMAIL=${{ secrets.PB_ADMIN_EMAIL }}" >> .env
+        echo "PB_ADMIN_PASSWORD=${{ secrets.PB_ADMIN_PASSWORD }}" >> .env
 
     - name: Build app
-      run: npm run build
+      run: bun run build
 
     - name: Run NestJS server
       run: |
