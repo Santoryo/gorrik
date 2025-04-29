@@ -59,6 +59,7 @@ export class StreamerController {
             build_tabs: characters[0].build_tabs,
             active_equipment_tab: characters[0].active_equipment_tab,
             equipment_tabs: characters[0].equipment_tabs,
+            equipment: characters[0].equipment,
         };
 
 
