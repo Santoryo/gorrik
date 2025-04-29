@@ -1,0 +1,29 @@
+name: Deploy NestJS to Droplet
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build app
+      run: npm run build
+
+    - name: Run NestJS server
+      run: |
+        pm2 delete nest-app || true
+        pm2 start dist/main.js --name nest-app
