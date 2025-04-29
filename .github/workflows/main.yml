@@ -7,10 +7,15 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
-
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
     - name: Install Bun
       run: |
