@@ -7,6 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: self-hosted
+    environment: db
     
     steps:
     - name: Checkout code
@@ -27,9 +28,9 @@ jobs:
     
     - name: Create .env file
       run: |
-        echo "API_URL=$API_URL" >> .env
-        echo "PB_ADMIN_EMAIL=$PB_ADMIN_EMAIL" >> .env
-        echo "PB_ADMIN_PASSWORD=$PB_ADMIN_PASSWORD" >> .env
+        echo "API_URL=${{ secrets.API_URL }}" >> .env
+        echo "PB_ADMIN_EMAIL=${{ secrets.PB_ADMIN_EMAIL }}" >> .env
+        echo "PB_ADMIN_PASSWORD=${{ secrets.PB_ADMIN_PASSWORD }}" >> .env
 
     - name: Build app
       run: bun run build
