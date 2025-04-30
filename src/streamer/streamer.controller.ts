@@ -52,6 +52,7 @@ export class StreamerController {
             profession: characters[0].profession, 
             level: characters[0].level,
             age: characters[0].age,
+            title: characters[0].title,
             last_modified: characters[0].last_modified,
             created: characters[0].created, 
             deaths: characters[0].deaths,
