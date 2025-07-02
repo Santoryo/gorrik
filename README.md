@@ -28,6 +28,8 @@ PB_ADMIN_PASSWORD=adminpassword
 $ npm run start
 
 # watch mode
+
+#
 $ npm run start:dev
 
 # production mode
